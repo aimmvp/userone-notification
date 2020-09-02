@@ -1,3 +1,4 @@
+
 package userone;
 
 public class BookingChanged extends AbstractEvent {
@@ -7,10 +8,6 @@ public class BookingChanged extends AbstractEvent {
     private String useStartDtm;
     private String useEndDtm;
     private String bookingUserId;
-
-    public BookingChanged(){
-        super();
-    }
 
     public Long getId() {
         return id;
