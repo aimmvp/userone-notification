@@ -20,8 +20,6 @@ public class Notification {
         EmailSent emailSent = new EmailSent();
         BeanUtils.copyProperties(this, emailSent);
         emailSent.publishAfterCommit();
-
-
     }
 
 
