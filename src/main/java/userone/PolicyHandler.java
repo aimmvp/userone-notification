@@ -38,7 +38,8 @@ public class PolicyHandler{
         if(bookingChanged.isMe()){
             Notification notification = new Notification();
             notification.setUserId(bookingChanged.getBookingUserId());
-            notification.setContents("reservation has been changed");
+            notification.setContents("conference room[ " + bookingChanged.getRoomId() + " ] reservation is changed");
+//            notification.setContents("reservation has been changed");
             String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             notification.setSendDtm(nowDate);
             notificationRepository.save(notification);
