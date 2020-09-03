@@ -33,19 +33,18 @@ public class PolicyHandler{
         }
     }
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverBookingChanged_SendNotification(@Payload BookingChanged bookingChanged){
-
-        if(bookingChanged.isMe()){
+    public void wheneverUseStarted_SendNotification(@Payload UseStarted useStarted) {
+        if(useStarted.isMe()) {
             Notification notification = new Notification();
-            notification.setUserId(bookingChanged.getBookingUserId());
-            notification.setContents("conference room[ " + bookingChanged.getRoomId() + " ] reservation is changed");
-//            notification.setContents("reservation has been changed");
+            notification.setUserId("99999");
+            notification.setContents("Booking Number[ " + String.valueOf(useStarted.getBookingId()) + " ] is use started");
             String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             notification.setSendDtm(nowDate);
             notificationRepository.save(notification);
-            System.out.println("##### listener SendNotification : " + bookingChanged.toJson());
+            System.out.println("##### listener SendNotification : " + useStarted.toJson());
         }
     }
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverBookingCancelled_SendNotification(@Payload BookingCancelled bookingCancelled){
 
